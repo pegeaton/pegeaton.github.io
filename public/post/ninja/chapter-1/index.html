@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Part 1: GitHub Actions in the Modern Apps Ninja Repository | Peg&#39;s blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Ninja GitHub Acions">
+    <meta name="generator" content="Hugo 0.80.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+
+  
+  
+    <link rel="stylesheet" href="/ananke/dist/main.css_5c99d70a7725bacd4c701e995b969fea.css" >
+  
+
+
+
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Part 1: GitHub Actions in the Modern Apps Ninja Repository" />
+<meta property="og:description" content="Ninja GitHub Acions" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pegeaton.github.io/post/ninja/chapter-1/" />
+<meta property="article:published_time" content="2021-01-15T01:12:00+00:00" />
+<meta property="article:modified_time" content="2021-01-15T01:12:00+00:00" /><meta property="og:site_name" content="Peg&#39;s blog" />
+<meta itemprop="name" content="Part 1: GitHub Actions in the Modern Apps Ninja Repository">
+<meta itemprop="description" content="Ninja GitHub Acions">
+<meta itemprop="datePublished" content="2021-01-15T01:12:00+00:00" />
+<meta itemprop="dateModified" content="2021-01-15T01:12:00+00:00" />
+<meta itemprop="wordCount" content="1101">
+
+
+
+<meta itemprop="keywords" content="GitHub,Github Actions,ModernAppsNinja," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Part 1: GitHub Actions in the Modern Apps Ninja Repository"/>
+<meta name="twitter:description" content="Ninja GitHub Acions"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://pegeaton.github.io/images/chapter-1/sunset-gloucester.jpeg');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        <img src="/images/logo.png" class="w100 mw5-ns" alt="Peg&#39;s blog" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+<a href="https://twitter.com/pegeaton" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+<a href="https://linkedin.com/in/pegeaton" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/pegeaton" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Part 1: GitHub Actions in the Modern Apps Ninja Repository</h1>
+          
+            <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              Ninja GitHub Acions
+            </h2>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        ARTICLES
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://pegeaton.github.io/post/ninja/chapter-1/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://pegeaton.github.io/post/ninja/chapter-1/&amp;text=Part%201:%20GitHub%20Actions%20in%20the%20Modern%20Apps%20Ninja%20Repository" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://pegeaton.github.io/post/ninja/chapter-1/&amp;title=Part%201:%20GitHub%20Actions%20in%20the%20Modern%20Apps%20Ninja%20Repository" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Part 1: GitHub Actions in the Modern Apps Ninja Repository</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-01-15T01:12:00Z">January 15, 2021</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>In this blog series, we explore automated workflows supporting the Modern Apps Ninja program. Modern Apps Ninja program administrators and members are encouraged to explore automation and CI/CD to improve the delivery of content and provide experiential learning for community members. The series outline follows:</p>
+<ul>
+<li>Part 1 introduces the Modern Apps Ninja GitHub Repository, GitHub Actions, the GitHub Actions Marketplace, and demonstrates GitHub Actions Ecosystem workflows as leveraged by the Modern Apps Ninja administrators.</li>
+<li><a href="../chapter-2/">Part 2</a> hands-on walk-through and exploration of creating a GitHub Actions.</li>
+<li><a href="../chapter-3.md">Part 3</a> explores a more complex GitHub Actions workflow, written to support Modern Apps Ninja member registration; handling secrets and environment variables.</li>
+</ul>
+<hr>
+<h3 id="modern-apps-ninja-community-and-repository">Modern Apps Ninja Community and Repository</h3>
+<p>The <a href="https://modernapps.ninja/">Modern Apps Ninja</a> learning community consists of students and professional cloud native practitioners, learning and working together to apply new cloud native technologies skills. A collaborative, community-driven approach to developing and curating content is fundamental to the program mission.  Community members develop the key content, including courses, labs and hackathons focused on modern applications and application platforms.  Experiential learning opportunities are embedded throughout courses and on-going administration of the program.</p>
+<h3 id="github">GitHub</h3>
+<p><a href="https://github.com">GitHub</a> is more than a source code control system, it is truly a collaboration platform. GitHub is well documented and there are many different tutorials to help you get started.  One of my favorites is the <a href="https://lab.github.com/">GitHub Learning Lab</a>. Check it out, create a GitHub account, and join the <a href="https:https://modernapps.ninja/">Modern Apps Ninja</a> community!</p>
+<h3 id="modern-apps-ninja-github-repository">Modern Apps Ninja GitHub repository</h3>
+<p>The content, membership, and overall <a href="https://modernapps.ninja/">Modern Apps Ninja</a> program is supported through GitHub.  The <a href="https://github.com/ModernAppsNinja/modernappsninja.github.io">Modern Apps Ninja GitHub repository</a> is a public repository available for anyone to view; the repository contains lab guides, course content, and administrative materials.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<figure>
+    <img src="/images/chapter-1/modernapps-top-level.png"/> <figcaption>
+            <h4>ModernAppsNinja Repository</h4>
+        </figcaption>
+</figure>
+
+<p>In addition, the <a href="https://lms.modernapps.ninja/">modernapps.ninja</a> site is the frontend for the modernapps.ninja learning management system (an edX platform) used to support delivering some of the free courses. The power of leveraging multiple systems is demonstrated throughout the site and course work.</p>
+<h3 id="the-need-for-automated-workflows">The need for automated workflows</h3>
+<p>Automation is necessary to ensure consistent operations and rapid delivery of software supporting the program. Workflows are used to improve quality and efficiency when delivering code to production. For example, the site <a href="https://modernapps.ninja/">https://modernapps.ninja/</a> is fully automated and automatically generated from GitHub. The automation helps with standardization efforts and testing. While there are many CI/CD supporting technologies (Tekton pipelines, Jenkins, etc.) the use of GitHub Actions has a number of benefits, even at the most basic, free subscription level, including:</p>
+<ul>
+<li>2,000 Actions minutes/month are free for public repositories</li>
+<li>500MB of GitHub Packages storage free for public repositories</li>
+<li>fully integrated into GitHub</li>
+<li>GitHub Actions workflow run on GitHub hosted virtual machines or self-hosted machines</li>
+</ul>
+<p>As students and practitioners of Cloud Native technologies, members often contribute lab guides for a variety of technology areas. Contributors submit content to the GitHub repository and are engaged in continuous integration processes. Contributions take many different forms including creating issue tickets, resolving issues, making pull requests, creating GitHub Actions to support CI/CD, technical writing, and code development.
+Experiential learning is a key principle of the program; providing members an opportunity to advance not only their cloud native knowledge but practice skills by actively engaging in the community.</p>
+<hr>
+<h2 id="github-actions">GitHub Actions</h2>
+<p><a href="https://docs.github.com/en/free-pro-team@latest/actions">GitHub Actions</a> are powerful workflow tools built right into GitHub. GitHub Actions workflows are used to automate execution of tasks triggered by events within a repository. GitHub Actions support many different types of event which trigger workflows, including push, pull_request, issues, etc.
+<img src="/images/chapter-1/diagramDirectory.png" alt="diagramDirectory"></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>GitHub Actions are located in a subdirectory within a repository. Many different types of events within the repository can trigger an action to runner.
+Workflows are located in a .github/workflows directory within a repository; the definition file uses YAML syntax.  The workflow YAML file definitions have an enormous set of options to support CI/CD pipelines. For example, there are many different event types to trigger execution, including push, pull-requests, issue creation, etc.</p>
+<p>Let&rsquo;s take a look at the structure of a simple GitHub Actions workflow that does two things: (1) runs a bash command to echo the classic &ldquo;Hello World!&rdquo; statement and (2) runs a go program to display &ldquo;Hello World!&rdquo;.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><figure>
+    <img src="/images/chapter-1/hello-action.png"/> <figcaption>
+            <h4>hello-action</h4>
+        </figcaption>
+</figure>
+
+As you can see in the hello-action graphic above, the file contains:</p>
+<ul>
+<li>the name of the GitHub Actions: hello-sample</li>
+<li>the event type: push (when a commit is made in this repository the workflow will run &ndash; event type identifies the trigger for execution)</li>
+<li>jobs: name of the jobs to be queued for execution (in this case only a single job)</li>
+<li>the job name: echo-hello</li>
+<li>runs-on: ubuntu-latest - indicates the type of machine and version to be used for executing the job</li>
+<li>uses: checks out the repository (or download and install packages)</li>
+<li>run: indicates code to execute</li>
+</ul>
+<p>We continue to dive deeper into the power and flexibility of the workflow in subsequent articles.</p>
+<hr>
+<h2 id="github-marketplace-an-ecosytem-of-github-actions">GitHub Marketplace: An Ecosytem of GitHub Actions</h2>
+<p>The <a href="https://github.com/marketplace">GitHub Marketplace</a> provides a venue for creators to share GitHub Actions with the GitHub community.</p>
+<p>The following graphics show examples of GitHub Actions for secrets.</p>
+<h3 id="github-marketplace-secrets-example">GitHub Marketplace Secrets Example</h3>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<figure>
+    <img src="/images/chapter-1/github-actions-marketplace-secrets.png"/> <figcaption>
+            <h4>GitHub Actions Marketplace</h4>
+        </figcaption>
+</figure>
+
+<p>The marketplace contains a variety of contributions supporting the <a href="https://gohugo.io/">hugo</a> framework (static website generator).</p>
+<h3 id="github-actions-in-the-modern-apps-ninja-repository">GitHub Actions in the Modern Apps Ninja repository</h3>
+<p>There are many advantages and reasons to use open source contributions:</p>
+<ul>
+<li>standing on the shoulders of giants; leverage the work of others on already solved problems rather than re-inventing the wheel</li>
+<li>providing opportunities for learning</li>
+<li>improving software quality by exposing code to a broad community finds bugs more quickly</li>
+<li>focusing development on what is important to community members</li>
+</ul>
+<p>The deployment of the modernapps.ninja website leverages a <a href="https://gohugo.io/">hugo</a> github actions contribution by peaceiris.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<figure>
+    <img src="/images/chapter-1/marketplace-hugo-peaceiris.png"/> <figcaption>
+            <h4>peaceiris GitHub Actions Contributions</h4>
+        </figcaption>
+</figure>
+
+<p>Here is a screenshot of the GitHub Actions description for the hugo build.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<figure>
+    <img src="/images/chapter-1/hugobuild.png"/> <figcaption>
+            <h4>Hugo GitHub Actions Build File</h4>
+        </figcaption>
+</figure>
+
+<p>As we begin to use GitHub Actions in a production environment, the workflow is a little more complex. Notice the following:</p>
+<ul>
+<li>this workflow is triggered by a push to the main branch of the ninja repository (not on push to other branches)</li>
+<li>a specific ubuntu version is specified as the build machine type; this ensures the repository is run on a matching os version</li>
+<li>the uses: checkout ensures subdirectories in the repository are loaded</li>
+<li>the uses: ensures the latest version of the hugo package is downloaded and installed</li>
+<li>github_token is specified for authentication</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>Modern Apps Ninja program uses GitHub Actions in the repository to support the software lifecycle of program assets. This is all great, but GitHub Actions workflows are code so we need to consider versioning, troubleshooting and test the code. Stay-tuned - part 2 covers these areas as we step through building and testing a workflow.</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/github" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">GitHub</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/github-actions" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Github Actions</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/modernappsninja" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">ModernAppsNinja</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://pegeaton.github.io" >
+    &copy;  Peg's blog 2021 
+  </a>
+    <div>
+
+
+
+
+<a href="https://twitter.com/pegeaton" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+<a href="https://linkedin.com/in/pegeaton" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/pegeaton" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
