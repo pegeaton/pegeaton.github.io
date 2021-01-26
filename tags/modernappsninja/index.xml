@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ModernAppsNinja on Peg&#39;s blog</title>
+    <link>pegeaton.github.io/tags/modernappsninja/</link>
+    <description>Recent content in ModernAppsNinja on Peg&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Jan 2021 01:12:00 +0000</lastBuildDate><atom:link href="pegeaton.github.io/tags/modernappsninja/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 2: Dive Deeper into GitHub Actions</title>
+      <link>pegeaton.github.io/post/ninja/chapter-2/</link>
+      <pubDate>Fri, 22 Jan 2021 01:12:00 +0000</pubDate>
+      
+      <guid>pegeaton.github.io/post/ninja/chapter-2/</guid>
+      <description>Let&amp;rsquo;s take a hands-on approach and walk-through creating the hello world program and GitHub Actions workflow together. The GitHub documentation (https://docs.github.com/) is available as a reference as needed.
+In this exercise you will create a GitHub repository containing three files: README.md, hello.go, and hello-action.yml. The file structure is shown in the following diagram:
+  Samples Repository Structure   1. Create a GitHub Account Create a GitHub account, if you have not done so already.</description>
+    </item>
+    
+    <item>
+      <title>Part 1: GitHub Actions in the Modern Apps Ninja Repository</title>
+      <link>pegeaton.github.io/post/ninja/chapter-1/</link>
+      <pubDate>Fri, 15 Jan 2021 01:12:00 +0000</pubDate>
+      
+      <guid>pegeaton.github.io/post/ninja/chapter-1/</guid>
+      <description>In this blog series, we explore automated workflows supporting the Modern Apps Ninja program. Modern Apps Ninja program administrators and members are encouraged to explore automation and CI/CD to improve the delivery of content and provide experiential learning for community members. The series outline follows:
+ Part 1 introduces the Modern Apps Ninja GitHub Repository, GitHub Actions, the GitHub Actions Marketplace, and demonstrates GitHub Actions Ecosystem workflows as leveraged by the Modern Apps Ninja administrators.</description>
+    </item>
+    
+  </channel>
+</rss>
