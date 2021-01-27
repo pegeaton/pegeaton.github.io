@@ -24,7 +24,7 @@ enableRobotsTXT = true
 
 [params]
   favicon = ""
-  site_logo = "/images/logo.png"
+  site_logo = ""
   description = "Eclectic Adventures in the virtual and physical world."
   twitter = "https://twitter.com/pegeaton"
   instagram = ""
